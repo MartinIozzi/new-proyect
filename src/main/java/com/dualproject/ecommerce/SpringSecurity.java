@@ -27,6 +27,8 @@ public class SpringSecurity {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
             .csrf(csrf -> csrf.disable())
+            // Maneja las condiciones para entrar a X ruta. Por defecto manda al login
+            // Un asterisco es para marcar cualquier ruta, y dos astericos para marcar cualquier ruta y subruta
             .authorizeHttpRequests(req -> {
                 req
                     .requestMatchers("/img/*","/css/*","/js/*").permitAll()
