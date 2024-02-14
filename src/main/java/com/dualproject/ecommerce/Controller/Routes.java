@@ -13,4 +13,9 @@ public class Routes {
         return "index";
     }
 
+    @GetMapping("/products")
+    public String getProductsPage(Model model){
+        return "products";
+    }
+
 }

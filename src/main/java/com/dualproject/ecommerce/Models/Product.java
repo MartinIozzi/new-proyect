@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,4 +20,11 @@ public class Product {
     private double price;
     private String image;
     private int stock;
+
+    public Product(String product, double price, String image, int stock){
+        this.product = product;
+        this.price = price;
+        this.image = image;
+        this.stock = stock;
+    }
 }
