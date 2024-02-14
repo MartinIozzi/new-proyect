@@ -31,7 +31,7 @@ public class SpringSecurity {
             // Un asterisco es para marcar cualquier ruta, y dos astericos para marcar cualquier ruta y subruta
             .authorizeHttpRequests(req -> {
                 req
-                    .requestMatchers("/img/*","/css/*","/js/*").permitAll()
+                    .requestMatchers("/img/**","/css/**","/js/**").permitAll()
                     .requestMatchers("/*").permitAll();
             });
 
