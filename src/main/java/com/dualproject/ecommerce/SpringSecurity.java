@@ -28,7 +28,9 @@ public class SpringSecurity {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(req -> {
-                req.requestMatchers("/*").permitAll();
+                req
+                    .requestMatchers("/img/*","/css/*","/js/*").permitAll()
+                    .requestMatchers("/*").permitAll();
             });
 
         return http.build();
