@@ -16,13 +16,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String product;
+    private String name;
+    private String description;
     private double price;
     private String image;
     private int stock;
 
-    public Product(String product, double price, String image, int stock){
-        this.product = product;
+    public Product(String name,String description, double price, String image, int stock){
+        this.name = name;
+        this.description = description;
         this.price = price;
         this.image = image;
         this.stock = stock;

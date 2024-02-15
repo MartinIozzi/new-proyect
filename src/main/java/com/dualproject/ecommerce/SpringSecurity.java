@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -31,6 +32,9 @@ public class SpringSecurity {
             // Un asterisco es para marcar cualquier ruta, y dos astericos para marcar cualquier ruta y subruta
             .authorizeHttpRequests(req -> {
                 req
+                    .requestMatchers(new AntPathRequestMatcher("rest/products/update/**", "PUT")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
+                    .requestMatchers(new AntPathRequestMatcher("rest/products/update/**", "DELETE")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
+                    .requestMatchers("rest/products/**").permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
                     .requestMatchers("/img/**","/css/**","/js/**").permitAll()
                     .requestMatchers("/*").permitAll();
             });
