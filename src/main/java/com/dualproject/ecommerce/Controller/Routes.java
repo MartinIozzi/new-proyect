@@ -18,4 +18,9 @@ public class Routes {
         return "products";
     }
 
+    @GetMapping("login")
+    public String getLogin(Model model){
+        return "login";
+    }
+
 }

@@ -18,7 +18,7 @@ import com.dualproject.ecommerce.Services.ProductService;
 
 
 @RestController
-public class Rest {
+public class RestProducts {
 
     private final String routeProducts = RoutesPath.routeProducts;
 
@@ -43,7 +43,7 @@ public class Rest {
         return productService.getAllProducts();
     }
 
-    // ---------------------------------------- Post Methods ----------------------------------------
+    // ---------------------------------------- Post Methods ---------------------------------------
     @PostMapping(routeProducts + "/add")
     public void addProduct(@RequestBody Product product){
         product.setImage("/img/products/" + product.getImage()); // Agrega la carpeta de las imagenes al inicio
@@ -81,7 +81,7 @@ public class Rest {
         productService.updateImage(id, image);
     }
     
-    // ---------------------------------------- Delete Methods ----------------------------------------
+    // ---------------------------------------- Delete Methods -------------------------------------
     @DeleteMapping(routeProducts + "/delete/{id}")
     public void removeProduct(@PathVariable Long id){
         productService.removeProductById(id);
