@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.dualproject.ecommerce.RoutesPath;
 import com.dualproject.ecommerce.Models.Product;
 import com.dualproject.ecommerce.Repositories.ProductRepo;
 
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductService {
     
     private final ProductRepo repository;
-    private final String productsImgRoute = "/img/products/";
+    private final String productsImgRoute = RoutesPath.productsImgRoute;
 
     public void addProduct(Product product){
         repository.save(product);
@@ -25,9 +26,8 @@ public class ProductService {
     // Devuelve el producto si existe o null si no existe
     public Product getProductById(Long id){
         Optional<Product> product = repository.findById(id);
-
         if(product.isPresent()) return product.get();
-        
+
         return null;
     }
 

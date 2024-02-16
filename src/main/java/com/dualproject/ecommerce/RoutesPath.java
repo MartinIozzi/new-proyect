@@ -2,7 +2,8 @@ package com.dualproject.ecommerce;
 
 public class RoutesPath {
 
-    public final static String routeProducts = "/rest/products";
+    public static final String routeProducts = "/rest/products";
+    public static final String productsImgRoute = "/img/products/";
 
     private RoutesPath(){
     }

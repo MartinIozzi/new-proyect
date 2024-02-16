@@ -14,13 +14,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SpringSecurity {
 
+    private final String productsPath = RoutesPath.routeProducts;
+
     @Bean
-    public BCryptPasswordEncoder encoder(){
+    protected BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
     
     @Bean
-    public UserDetailsService userDetailsService(){
+    protected UserDetailsService userDetailsService(){
         return new InMemoryUserDetailsManager();
     }
 
@@ -32,9 +34,10 @@ public class SpringSecurity {
             // Un asterisco es para marcar cualquier ruta, y dos astericos para marcar cualquier ruta y subruta
             .authorizeHttpRequests(req -> {
                 req
-                    .requestMatchers(new AntPathRequestMatcher("rest/products/update/**", "PUT")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
-                    .requestMatchers(new AntPathRequestMatcher("rest/products/update/**", "DELETE")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
-                    .requestMatchers("rest/products/**").permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
+                    .requestMatchers(new AntPathRequestMatcher(productsPath + "/add", "POST")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
+                    .requestMatchers(new AntPathRequestMatcher(productsPath + "/update/*", "PUT")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
+                    .requestMatchers(new AntPathRequestMatcher(productsPath + "/delete/*", "DELETE")).permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
+                    .requestMatchers(new AntPathRequestMatcher(productsPath + "/**", "GET")).permitAll()
                     .requestMatchers("/img/**","/css/**","/js/**").permitAll()
                     .requestMatchers("/*").permitAll();
             });
