@@ -64,7 +64,7 @@ public class UserService {
         repository.updatePassword(userId, new BCryptPasswordEncoder().encode(password));
     }
 
-    // Comprueba si 'oldPassword' es la guardada en la base de datos, si es la misma entonces cambia a la nueva contraseña
+    // Comprueba si 'oldPassword' es la guardada en la base de datos, si es la misma cambia a la nueva contraseña y devuelve true
     public boolean changePassword(Long userId, String oldPassword, String newPassword){
         if(!new BCryptPasswordEncoder().matches(oldPassword, repository.findById(userId).get().getPassword())) return false;
 

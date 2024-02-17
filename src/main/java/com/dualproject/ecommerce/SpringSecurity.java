@@ -35,15 +35,15 @@ public class SpringSecurity {
                 req
                     .requestMatchers(
                         new AntPathRequestMatcher(usersPath + "/register", "POST"),
-                        new AntPathRequestMatcher(usersPath + "/change_password", "PUT"),
-                        new AntPathRequestMatcher(usersPath + "/add/*", "PUT")
-                    ).permitAll()
+                        new AntPathRequestMatcher(usersPath + "/change_password", "PUT"))
+                            .permitAll()
                     .requestMatchers(
                         new AntPathRequestMatcher(productsPath + "/add", "POST"))
                             .permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
                     .requestMatchers(
                         new AntPathRequestMatcher(productsPath + "/update/*", "PUT"),
-                        new AntPathRequestMatcher(usersPath + "/update/*", "PUT"))
+                        new AntPathRequestMatcher(usersPath + "/update/*", "PUT"),
+                        new AntPathRequestMatcher(usersPath + "/add/*", "PUT"))
                             .permitAll() // SOLO ADMINISTRADORES, temporalmente habilitado
                     .requestMatchers(
                         new AntPathRequestMatcher(productsPath + "/delete/*", "DELETE"),
@@ -59,7 +59,7 @@ public class SpringSecurity {
             })
             .logout(logout -> {
                 logout.logoutUrl("/logout");
-                logout.logoutSuccessUrl("/success");
+                logout.logoutSuccessUrl("/");
             });
 
         return http.build();
